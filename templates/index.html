@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD</title>
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Lista de Libros</h2>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class=flashes>
+            {% for message in messages %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+              </div>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        {% endwith %}
+        <ul class="list-group">
+            {% if documentos %}
+            <table class="table table-dark">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Titulo</th>
+                    <th scope="col">Autor</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for documento in documentos %}
+                        <tr>
+                        <th scope="row">{{documento.id}}</th>
+                        <td>{{documento.titulo}}</td>
+                        <td>{{documento.autor}}</td>
+                        <td>{{documento.precio}}</td>
+                        <td>
+                            <a href="/editar/{{documento.id}}">Editar</a>
+                            <a href="/eliminar/{{documento.id}}">Eliminar</a>
+                        </td>
+                      </tr>
+                    {% endfor %}
+                  
+                </tbody>
+              </table>
+            
+            {% else %}
+            <div class="alert alert-danger" role="alert">
+                No hay documentos para mostrar
+              </div>
+            {%endif%}
+        </ul>
+        
+        <h2>Agregar Libro</h2>
+        <form action="/nuevo" method="post" class="mt-3">
+            <div class="form-group">
+                <label for="titulo">Titulo:</label>
+                <input type="text" class="form-control" name="titulo" required>
+            </div>
+            <div class="form-group">
+                <label for="autor">Autor:</label>
+                <input type="text" class="form-control" name="autor" required>
+            </div>
+            <div class="form-group">
+                <label for="precio">Precio:</label>
+                <input type="number" class="form-control" name="precio" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS y Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
