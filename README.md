@@ -20,5 +20,5 @@ Ejecuta estos comandos en terminal
 * MongoDB    
   
 ## Screenshots : 
-<img src="img/front1.png" height="400" width="800">
-<img src="img/front2.png" height="400" width="800">
+<img src="img/front1.PNG" height="400" width="800">
+<img src="img/front2.PNG" height="400" width="800">
